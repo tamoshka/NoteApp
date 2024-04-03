@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34024.191
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppUI", "NoteAppUI.csproj", "{043F3489-079E-4C5E-93EC-B0E080542808}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteApp", "..\NoteApp\NoteApp.csproj", "{5166C85A-A1F6-4487-BF6F-D140F6930273}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{043F3489-079E-4C5E-93EC-B0E080542808}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{043F3489-079E-4C5E-93EC-B0E080542808}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{043F3489-079E-4C5E-93EC-B0E080542808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5166C85A-A1F6-4487-BF6F-D140F6930273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5166C85A-A1F6-4487-BF6F-D140F6930273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5166C85A-A1F6-4487-BF6F-D140F6930273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5166C85A-A1F6-4487-BF6F-D140F6930273}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
