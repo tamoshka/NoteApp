@@ -19,6 +19,7 @@ namespace NoteApp
         /// <param name="path">Путь для сохранения файлов.</param>
         public static void SaveToFile(List<Note> data, string path)
         {
+            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), path);
             var serialized = JsonConvert.SerializeObject(data, Formatting.Indented);
             File.WriteAllText(path, serialized);
         }
@@ -30,6 +31,7 @@ namespace NoteApp
         /// <returns>Список объектов класса <see cref="Note"/>.</returns>
         public static List<Note> LoadFromFile(string path)
         {
+            path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), path);
             var data = new List<Note>();
             if (File.Exists(path))
             {

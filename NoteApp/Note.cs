@@ -45,7 +45,7 @@ namespace NoteApp
         {
             Name = "Без названия";
             Category = NoteCategories.Разное;
-            Text = "";
+            Text = String.Empty;
             Created = DateTime.Now;
             LastUpdated= DateTime.Now;
         }
@@ -82,6 +82,7 @@ namespace NoteApp
                 }
 
                 _name = value;
+                Updated();
             }
         }
 
@@ -97,6 +98,7 @@ namespace NoteApp
             set
             {
                 _category = value;
+                Updated();
             }
         }
 
@@ -112,6 +114,7 @@ namespace NoteApp
             set
             {
                 _text=value;
+                Updated();
             }
         }
 
@@ -146,39 +149,9 @@ namespace NoteApp
         }
 
         /// <summary>
-        /// Метод, обновляющий название заметки.
-        /// </summary>
-        /// <param name="name">Обновленное название заметки.</param>
-        public void UpdateName(string name)
-        {
-            Name =name;
-            Updated();
-        }
-
-        /// <summary>
-        /// Метод, обновляющий категорию заметки.
-        /// </summary>
-        /// <param name="category">Обновленная категория заметки.</param>
-        public void UpdateCategory(NoteCategories category)
-        {
-            Category = category;
-            Updated();
-        }
-
-        /// <summary>
-        /// Метод, обновляющий текст заметки.
-        /// </summary>
-        /// <param name="text">Обновленный текст заметки.</param>
-        public void UpdateText(string text)
-        {
-            Text = text;
-            Updated();
-        }
-
-        /// <summary>
         /// Метод, обновляющий время последнего изменения заметки.
         /// </summary>
-        public void Updated()
+        private void Updated()
         {
             LastUpdated=DateTime.Now;
         }
