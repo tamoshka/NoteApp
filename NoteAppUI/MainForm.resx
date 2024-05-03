@@ -117,14 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="AddContactIconContrast 512x512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\AddContactIconContrast 512x512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="DeleteContactIconContrast 512x512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DeleteContactIconContrast 512x512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="EditContactIconContrast 512x512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\EditContactIconContrast 512x512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAA3SAAAN0gFvkv6OAAAAB3RJ
+        TUUH6AQCDjkoWOVVTgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAARaSURBVFhH
+        5Zf9b1NVGMfrD4ZoxLWKw5V29669faHbuX3dKFt1ZcA2xrZkQCR0K6sSlGRGBDMJyjISyHADZjS4iFkE
+        eck2GS4zoAGShcT4kxITjHv5ByRRE/kBNMHI4zmnZ1fvejbvXe9VjE/yyZbe0+f76Tnn3p5a/jMlSdIS
+        0YcGSrwyGAf6Brd+KJuQRzl9YbvoQXf5IXnikb93OOKPsKjFFW40SZqd/ugczMzMGMbuzjfvkb6ChO7Y
+        /f4nWZz+wkvx+yt7Orkh+TD++cS9vfu66UyKHvlHhyPwBIvUV6RB79F+bkg+EMGPx6/gmexiy41uFUWj
+        j7JY7WWGYNfBw5Bc3wREUCXpRT/jG/JxFq2tzBDcmspAILhKESTs7z7CJOX7LlfIw+L/vv4pQULP8ffA
+        5QviPYl+k6RAgCksXKYItmZgpVyRI0joe+ckuP0hIvmLUyp1M435ywzBXR2v0uV8e+BDrmTPsRN0JvGe
+        /NXtjjmZCr/MELxy9RoVJLM4ePYCV/Kt/oHZPQmCH8WZTm6ZIUh4/+SgIqCFYj+KMCV1kYtmCBJu3vwW
+        du95HSqfXQ/lq5NcykJxKojPAs1MSV1mCmrhSN/xB1vw3RPZvShKpbVMSV3/tiBhampqC9PJrf+94Fdf
+        34B0Zid77qnvXPJafeMm6OntTzOd3DJLcGLiOpSyO5Tiw4+SRDnYtyXB3rYGnOvwNf9fpD3ojtsdTDKt
+        P8sMwdc631CCV2ytBuvYdij4LDMvT3fU0g9AxosS+jIajT7M9IwVnJ6ehpbnWmmQUFkO1vGFxVR82g7O
+        usrZD/YdlQwEAo8ZKXjg4CEa4GhK8CU0YE+vyUp65DFLiYRSRgmOXhzLzlw4QmeDF15wOYNnNgZiBI/B
+        /3PHYBzNCdrLgjfmiFGC9Y2boSQQBNtIKzeUcrkdxFAYRDyu4NI8H4KAxwnRCBb0yjeMEBweGdW2tFoF
+        Mcv3NZAZlG8ZIbjr5ez5z3Y+xQ1T0CFoG2qlM0gb5yvY0LQZhHg5N0iFDkGCYYLxxFpw1leqAy5l6PNP
+        xSdpEINZQevFdM71udKGCYYrnsnZf87a1bS3HoRYVCVpmGBFVQ04N6hn0HahDZYda1FztAVEhH8wrQzC
+        sr451zC2M9tUPQwTrNu4CYqrHuA9uOPFDtrHOtrGDVLQIWgdTRsneOr0WdrHnkpywxR0CBZ2NRonSEgk
+        60AsC4EV7z1eIEWHYHFVhbGCZ84N0V7F1auwCD+UvC7GIiDK4fnHYMhKkF6GChJeYHvRnqnhBmth+f6N
+        tIfoQV8ogod7ermBepmcnITqtRtoz7mPHS0UPV9D34tPWT+5XNECKih60e2G5i3cwMWS2r4jG4SP9ORL
+        f6HlJDyFn4lk/5L3CN6yH3w+31LlNC140DD5WxaOwyE8kx8MnloU5E4mJ+pZyaHhEdUPJRGfE4vaa6Dw
+        QCMUdjdB0Uvr8Pd3TLle4kX3Ba+8l4rRslj+AL/uxavC8d4+AAAAAElFTkSuQmCC
+</value>
   </data>
 </root>
