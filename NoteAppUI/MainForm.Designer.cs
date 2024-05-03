@@ -153,11 +153,12 @@
             // 
             // textBoxText
             // 
-            this.textBoxText.Location = new System.Drawing.Point(17, 121);
+            this.textBoxText.Location = new System.Drawing.Point(17, 112);
+            this.textBoxText.Multiline = true;
             this.textBoxText.Name = "textBoxText";
             this.textBoxText.ReadOnly = true;
-            this.textBoxText.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxText.Size = new System.Drawing.Size(512, 20);
+            this.textBoxText.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxText.Size = new System.Drawing.Size(512, 405);
             this.textBoxText.TabIndex = 7;
             // 
             // dateTimePickerModified

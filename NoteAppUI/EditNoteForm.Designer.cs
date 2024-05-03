@@ -129,10 +129,11 @@
             // 
             // TextTextBox
             // 
-            this.TextTextBox.Location = new System.Drawing.Point(3, 138);
+            this.TextTextBox.Location = new System.Drawing.Point(8, 138);
+            this.TextTextBox.Multiline = true;
             this.TextTextBox.Name = "TextTextBox";
-            this.TextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextTextBox.Size = new System.Drawing.Size(542, 20);
+            this.TextTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextTextBox.Size = new System.Drawing.Size(537, 236);
             this.TextTextBox.TabIndex = 9;
             this.TextTextBox.TextChanged += new System.EventHandler(this.TextTextBox_TextChanged);
             // 
