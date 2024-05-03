@@ -66,6 +66,23 @@ namespace NoteApp
         }
 
         /// <summary>
+        /// Конструктор класса <see cref="Note"/> с параметрами (Для Clone).
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="category"></param>
+        /// <param name="text"></param>
+        /// <param name="created"></param>
+        /// <param name="lastUpdated"></param>
+        public Note(string name, NoteCategories category, string text, DateTime created, DateTime lastUpdated)
+        {
+            Name = name;
+            Category = category;
+            Text = text;
+            Created = created;
+            LastUpdated = lastUpdated;
+        }
+
+        /// <summary>
         /// Возвращает и задаёт название заметки, а также производит валидацию входного паараметра.
         /// </summary>
         public string Name
@@ -166,7 +183,9 @@ namespace NoteApp
             (
                 Name,
                 Category,
-                Text
+                Text,
+                Created,
+                LastUpdated
             );
         }
     }

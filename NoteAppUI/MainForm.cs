@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Contracts;
 using System.Drawing;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using NoteApp;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace NoteAppUI
 {
     public partial class MainForm : Form
     {
-
         /// <summary>
         /// Обращение к форме AboutForm
         /// </summary>
@@ -32,6 +35,16 @@ namespace NoteAppUI
         public MainForm()
         {
             InitializeComponent();
+            ShowCategoryCombo.Items.Add(NoteCategories.Документы);
+            ShowCategoryCombo.Items.Add(NoteCategories.Работа);
+            ShowCategoryCombo.Items.Add(NoteCategories.Разное);
+            ShowCategoryCombo.Items.Add(NoteCategories.Люди);
+            ShowCategoryCombo.Items.Add(NoteCategories.ЗдоровьеИСпорт);
+            ShowCategoryCombo.Items.Add(NoteCategories.Дом);
+            ShowCategoryCombo.Items.Add(NoteCategories.Финансы);
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "notes.json");
+            Notes = ProjectManager.LoadFromFile(path);
+            UpdateNotes(Notes);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -61,6 +74,197 @@ namespace NoteAppUI
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        /// <summary>
+        /// Обработчик нажатия на добавление заметки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddNote_Click(object sender, EventArgs e)
+        {
+            TransferNote.Data = new Note();
+            var addForm = new AddEditNoteForm();
+            addForm.ShowDialog();
+            if (addForm.DialogResult == DialogResult.OK)
+            {
+                Notes.Add(TransferNote.Data);
+                var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "notes.json");
+                ProjectManager.SaveToFile(Notes, path);
+                UpdateNotes(Notes);
+            }
+        }
+
+        /// <summary>
+        /// Обновляет список заметок
+        /// </summary>
+        /// <param name="notes"></param>
+        private void UpdateNotes(List<Note> notes)
+        {
+            NotesListBox.Items.Clear();
+
+            foreach (var note in notes)
+            {
+                NotesListBox.Items.Add(note.Name);
+            }
+        }
+
+        /// <summary>
+        /// Обновляет значения заметки на форме
+        /// </summary>
+        /// <param name="note"></param>
+        private void UpdateNoteInformation(Note note)
+        {
+            labelName.Text = note.Name;
+            labelCurentCategory.Text = note.Category.ToString();
+            dateTimePickerCreated.Value = note.Created;
+            dateTimePickerModified.Value = note.LastUpdated;
+            textBoxText.Text = note.Text;
+        }
+
+        /// <summary>
+        /// Меняет отображаемую справа заметку на выбранную
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var index = NotesListBox.SelectedIndex;
+            if (ShowCategoryCombo.Text == string.Empty)
+            {
+                if (index >= 0)
+                {
+                    UpdateNoteInformation(Notes[index]);
+                }
+            }
+            else
+            {
+                if (index >= 0)
+                {
+                    UpdateNoteInformation(CategoriesedNotes[index]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обработчик попытки изменения даты создания заметки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dateTimePickerCreated_ValueChanged(object sender, EventArgs e)
+        {
+            var index = NotesListBox.SelectedIndex;
+            if (index >= 0)
+            {
+                dateTimePickerCreated.Value = Notes[index].Created;
+            }
+            else
+            {
+                dateTimePickerCreated.Value = DateTime.Now;
+            }
+        }
+
+        /// <summary>
+        /// Обработчик попытки изменения даты последнего изменения заметки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dateTimePickerModified_ValueChanged(object sender, EventArgs e)
+        {
+            var index = NotesListBox.SelectedIndex;
+            if (index >= 0)
+            {
+                dateTimePickerModified.Value = Notes[index].LastUpdated;
+            }
+            else
+            {
+                dateTimePickerModified.Value = DateTime.Now;
+            }
+        }
+
+        /// <summary>
+        /// Изменение уже созданной заметки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EditNote_Click(object sender, EventArgs e)
+        {
+            var index = NotesListBox.SelectedIndex;
+            if (index >= 0)
+            {
+                TransferNote.Data = (Note)Notes[index].Clone();
+                var addForm = new AddEditNoteForm();
+                addForm.ShowDialog();
+                if (addForm.DialogResult == DialogResult.OK)
+                {
+                    Notes[index] = TransferNote.Data;
+                    var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "notes.json");
+                    ProjectManager.SaveToFile(Notes, path);
+                    UpdateNotes(Notes);
+                    NotesListBox.SelectedIndex = index;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать заметку для редактирования",
+                    "Ошибка",
+                    MessageBoxButtons.OK);
+            }
+        }
+
+        /// <summary>
+        /// Удаление заметки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DeleteNote_Click(object sender, EventArgs e)
+        {
+            var index = NotesListBox.SelectedIndex;
+            if (index >= 0)
+            {
+                DialogResult warning = MessageBox.Show(
+                    $"Do you really want to remove this note: {Notes[index].Name}",
+                    "Warning",
+                    MessageBoxButtons.YesNo);
+                if (warning == DialogResult.Yes)
+                {
+                    Notes.RemoveAt(index);
+                    var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "notes.json");
+                    ProjectManager.SaveToFile(Notes, path);
+                    UpdateNotes(Notes);
+                    NotesListBox.SelectedIndex = -1;
+                    labelName.Text = String.Empty;
+                    labelCurentCategory.Text = String.Empty;
+                    dateTimePickerCreated.Value = DateTime.Now;
+                    dateTimePickerModified.Value = DateTime.Now;
+                    textBoxText.Text = String.Empty;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Необходимо выбрать заметку, которую хотите удалить",
+                    "Ошибка",
+                    MessageBoxButtons.OK);
+            }
+        }
+
+        private void ShowCategoryCombo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ShowCategoryCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var mask = ShowCategoryCombo.Text;
+            if (mask == string.Empty)
+            {
+                UpdateNotes(Notes);
+            }
+            else
+            {
+                CategoriesedNotes = Categoriesed.CategoriesedNotes(Notes, mask);
+                UpdateNotes(CategoriesedNotes);
+            }
         }
     }
 }
