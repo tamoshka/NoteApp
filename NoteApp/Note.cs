@@ -130,7 +130,11 @@ namespace NoteApp
             }
             set
             {
-                _text=value;
+                if (value.Length > 20000 || value.Length == 0)
+                {
+                    throw new ArgumentException();
+                }
+                _text =value;
                 Updated();
             }
         }
@@ -146,7 +150,11 @@ namespace NoteApp
             }
             set
             {
-                _created=value;
+                if (value > DateTime.Now)
+                {
+                    throw new ArgumentException();
+                }
+                _created =value;
             }
         }
 
@@ -161,6 +169,10 @@ namespace NoteApp
             }
             set
             {
+                if (value>DateTime.Now)
+                {
+                    throw new ArgumentException();
+                }
                 _lastUpdated = value;
             }
         }
