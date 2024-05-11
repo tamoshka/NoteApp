@@ -169,7 +169,7 @@ namespace NoteApp
             }
             set
             {
-                if (value>DateTime.Now)
+                if (value>DateTime.Now||value>Created)
                 {
                     throw new ArgumentException();
                 }
