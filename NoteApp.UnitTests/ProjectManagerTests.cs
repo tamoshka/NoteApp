@@ -70,5 +70,17 @@ namespace NoteApp.UnitTests
             var expected = _notes;
             Assert.IsTrue(expected[0].Equals(actual[0]));
         }
+
+        /// <summary>
+        /// Негативный тест десериализации списка заметок.
+        /// </summary>
+        [Test]
+        public void TestDeserializeNegative()
+        {
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "same");
+            var actual = ProjectManager.LoadFromFile(path);
+            var expected = _notes;
+            Assert.IsTrue(expected[0].Equals(actual[0]));
+        }
     }
 }
