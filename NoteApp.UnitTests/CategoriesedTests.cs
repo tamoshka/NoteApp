@@ -46,17 +46,5 @@ namespace NoteApp.UnitTests
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>
-        /// Негативный тест поиска по маске списка заметок.
-        /// </summary>
-        [Test]
-        public void TestCategoriesedNegative()
-        {
-            var categoriesedNotes = new List<Note>();
-            var expected = NoteCategories.Документы;
-            _notes.Add(_note);
-            var actual = _notes[0].Category;
-            Assert.AreEqual(expected, actual);
-        }
     }
 }

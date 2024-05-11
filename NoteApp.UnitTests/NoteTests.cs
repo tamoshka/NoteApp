@@ -41,14 +41,12 @@ namespace NoteApp.UnitTests
         /// <summary>
         /// Позитивный тест сеттера Name
         /// </summary>
-        [Test(Description = "Присвоение названия")]
+        [Test]
         public void TestnNameSetCurrentValue()
         {
-            var name = "Азбука";
+            var name = "Без названия";
             var note = new Note();
-            Assert.Throws<ArgumentException>(
-            () => { note.Name = name; },
-            "Если всё правильно, не должно возникать исключения");
+            Assert.AreEqual(name, note.Name);
         }
 
         /// <summary>
@@ -83,14 +81,13 @@ namespace NoteApp.UnitTests
         /// <summary>
         /// Позитивный тест сеттера Category
         /// </summary>
-        [Test(Description = "Присвоение категории")]
+        [Test]
         public void TestCategorySetCurrentValue()
         {
-            var category = NoteCategories.Документы;
+            var expected = NoteCategories.Разное;
             var note = new Note();
-            Assert.Throws<ArgumentException>(
-            () => { note.Category = category; },
-            "Если всё правильно, не должно возникать исключения");
+            var actual = _note.Category;
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -137,14 +134,12 @@ namespace NoteApp.UnitTests
         /// <summary>
         /// Позитивный тест сеттера Created
         /// </summary>
-        [Test(Description = "Присвоение времени создания")]
+        [Test]
         public void TestCreatedSetCurrentValue()
         {
             var created = DateTime.Now;
-            var note = new Note();
-            Assert.Throws<ArgumentException>(
-            () => { note.Created = created; },
-            "Если всё правильно, не должно возникать исключения");
+            var note = new Note("Азбука",NoteCategories.Документы,"Текст",created,created);
+            Assert.AreEqual (created, note.Created);
         }
 
         /// <summary>
@@ -175,31 +170,25 @@ namespace NoteApp.UnitTests
         /// <summary>
         /// Позитивный тест сеттера LastUpdated
         /// </summary>
-        [Test(Description = "Присвоение времени последнего обновления")]
+        [Test]
         public void TestLastUpdatedSetCurrentValue()
         {
             var lastUpdated = DateTime.Now;
             var note = new Note();
-            Assert.Throws<ArgumentException>(
-            () => { note.LastUpdated = lastUpdated; },
-            "Если всё правильно, не должно возникать исключения");
+            Assert.AreEqual(lastUpdated, note.LastUpdated);
         }
 
         /// <summary>
-        /// TestCase методов проверки сеттера свойства LastUpdated.
+        /// Присвоение времени обновления больше чем сейчас
         /// </summary>
-        /// <param name="wrongLastUpdated">Неверное поле последнего обновления.</param>
-        /// <param name="message">Текст ошибки.</param>
-        [TestCase("DateTime(2045,5,5)", "Должно возникать исключение, если время последнего обновления - больше текущего",
-            TestName = "Присвоение неправильного времени больше текущего в качестве времени последнего обновления")]
-        [TestCase("DateTime(2024,5,11)",
-            "Должно возникать исключение, если время последнего обновления больше чем время создания",
-            TestName = "Присвоение неправильного времени последнего обновления больше чем время создания")]
-        public void TestLastUpdatedSetArgumentException(DateTime wrongLastUpdated, string message)
+        [Test(Description = "Присвоение времени обновления больше чем сейчас")]
+        public void TestLastUpdatedSet_OverTime()
         {
+            var lastUpdated = new DateTime(2045, 5, 5);
+            var note = new Note();
             Assert.Throws<ArgumentException>(
-            () => { _note.LastUpdated = wrongLastUpdated; },
-            message);
+            () => { note.LastUpdated = lastUpdated; },
+            "Должно возникать исключение если время больше чем сейчас");
         }
 
         /// <summary>

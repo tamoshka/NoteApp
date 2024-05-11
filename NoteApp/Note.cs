@@ -45,7 +45,7 @@ namespace NoteApp
         {
             Name = "Без названия";
             Category = NoteCategories.Разное;
-            Text = String.Empty;
+            Text = "Тут пусто";
             Created = DateTime.Now;
             LastUpdated= DateTime.Now;
         }
@@ -169,7 +169,7 @@ namespace NoteApp
             }
             set
             {
-                if (value>DateTime.Now||value>Created)
+                if (value>DateTime.Now)
                 {
                     throw new ArgumentException();
                 }

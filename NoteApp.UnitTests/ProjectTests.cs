@@ -34,13 +34,11 @@ namespace NoteApp.UnitTests
         /// <summary>
         /// Позитивный тест сеттера Project
         /// </summary>
-        [Test(Description = "Присвоение списка заметок")]
-        public void TestnProjectSetCurrentValue()
+        [Test]
+        public void TestProjectSetCurrentValue()
         {
             List<Note> expected = new List<Note>();
-            Assert.Throws<ArgumentException>(
-            () => { _notes = expected; },
-            "Если всё правильно, не должно возникать исключения");
+            Assert.AreEqual(expected, _notes);
         }
     }
 }

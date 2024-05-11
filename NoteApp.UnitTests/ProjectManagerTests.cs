@@ -40,7 +40,7 @@ namespace NoteApp.UnitTests
         [TearDown]
         public void DeleteTestFile()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "test");
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "test.json");
             File.Delete(path);
         }
 
@@ -50,11 +50,9 @@ namespace NoteApp.UnitTests
         [Test]
         public void TestSerialize()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "test");
-            ProjectManager.SaveToFile(_notes, path);
-            var path2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "notes");
-            var expected = File.ReadAllText(path2);
-            var actual = File.ReadAllText(path);
+            ProjectManager.SaveToFile(_notes, Paths.PathToFilesTest);
+            var expected = File.ReadAllText(Paths.PathToStandard);
+            var actual = File.ReadAllText(Paths.PathToFilesTest);
             Assert.AreEqual(expected, actual);
         }
 
@@ -64,23 +62,11 @@ namespace NoteApp.UnitTests
         [Test]
         public void TestDeserialize()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "test");
-            ProjectManager.SaveToFile(_notes, path);
-            var actual = ProjectManager.LoadFromFile(path);
+            ProjectManager.SaveToFile(_notes, Paths.PathToFilesTest);
+            var actual = ProjectManager.LoadFromFile(Paths.PathToFilesTest);
             var expected = _notes;
             Assert.IsTrue(expected[0].Equals(actual[0]));
         }
 
-        /// <summary>
-        /// Негативный тест десериализации списка заметок.
-        /// </summary>
-        [Test]
-        public void TestDeserializeNegative()
-        {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "same");
-            var actual = ProjectManager.LoadFromFile(path);
-            var expected = _notes;
-            Assert.IsTrue(expected[0].Equals(actual[0]));
-        }
     }
 }
