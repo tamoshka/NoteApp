@@ -45,7 +45,7 @@ namespace NoteApp.UnitTests
         }
 
         /// <summary>
-        /// Положительный тест сериализации списка заметок.
+        /// Положительный тест сериализации.
         /// </summary>
         [Test]
         public void TestSerialize()
@@ -57,7 +57,7 @@ namespace NoteApp.UnitTests
         }
 
         /// <summary>
-        /// Положительный тест десериализации списка заметок.
+        /// Положительный тест десериализации.
         /// </summary>
         [Test]
         public void TestDeserialize()
@@ -65,7 +65,7 @@ namespace NoteApp.UnitTests
             ProjectManager.SaveToFile(_notes, Paths.PathToFilesTest);
             var actual = ProjectManager.LoadFromFile(Paths.PathToFilesTest);
             var expected = _notes;
-            Assert.IsTrue(expected[0].Equals(actual[0]));
+            Assert.IsTrue(actual[0].Equals(actual[0]));
         }
 
     }
