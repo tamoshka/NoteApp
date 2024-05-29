@@ -248,6 +248,9 @@ namespace NoteAppUI
                     dateTimePickerModified.Value = DateTime.Now;
                     textBoxText.Text = String.Empty;
                 }
+                var path2 = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "current.json");
+                File.Delete(path2);
+                CurrentNote = null;
             }
             else
             {
