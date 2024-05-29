@@ -26,7 +26,7 @@ namespace NoteApp
             {
                 for (int j = 0; j < categoriesedNotes.Count - i; j++)
                 {
-                    if (categoriesedNotes[j].LastUpdated > categoriesedNotes[j + 1].LastUpdated)
+                    if (categoriesedNotes[j].LastUpdated < categoriesedNotes[j + 1].LastUpdated)
                     {
                         var temp = categoriesedNotes[j];
                         categoriesedNotes[j] = categoriesedNotes[j + 1];
@@ -44,7 +44,7 @@ namespace NoteApp
             {
                 for (int j = 0;j< categoriesedNotes.Count-i;j++)
                 {
-                    if (categoriesedNotes[j].LastUpdated> categoriesedNotes[j+1].LastUpdated)
+                    if (categoriesedNotes[j].LastUpdated < categoriesedNotes[j+1].LastUpdated)
                     {
                         var temp = categoriesedNotes[j];
                         categoriesedNotes[j] = categoriesedNotes[j + 1];
