@@ -54,8 +54,15 @@ namespace NoteAppUI
             ShowCategoryCombo.Text = "All";
             path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "current.json");
             ListCurrentNote = ProjectManager.LoadFromFile(path);
-            CurrentNote = ListCurrentNote[0];
-            UpdateNoteInformation(ListCurrentNote[0]);
+            try
+            {
+                CurrentNote = ListCurrentNote[0];
+                UpdateNoteInformation(ListCurrentNote[0]);
+            }
+            catch
+            {
+
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
